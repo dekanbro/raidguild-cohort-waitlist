@@ -253,7 +253,7 @@ export default function Home() {
     <iframe
       ref={iframeRef}
       className="w-full h-full"
-      src="https://www.youtube.com/embed/LsA12-jCOjo?autoplay=1&mute=1&loop=1&playlist=LsA12-jCOjo&controls=0&showinfo=0&rel=0&enablejsapi=1"
+      src="https://www.youtube.com/embed/w7YHz5-dJF8?autoplay=1&mute=1&loop=1&playlist=w7YHz5-dJF8&controls=0&showinfo=0&rel=0&enablejsapi=1"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
     ></iframe>
