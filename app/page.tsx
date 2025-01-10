@@ -160,20 +160,20 @@ function SpeakerForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
       <Input
-        type="text"
-        placeholder="Enter your Discord handle"
-        className="bg-white/50 border-white/30 text-white placeholder:text-white"
-        value={handle}
-        onChange={(e) => setHandle(e.target.value)}
-        disabled={status === 'loading'}
-        required
-      />
-      <Input
         type="email"
         placeholder="Enter your email"
         className="bg-white/50 border-white/30 text-white placeholder:text-white"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        disabled={status === 'loading'}
+        required
+      />
+      <Input
+        type="text"
+        placeholder="Enter your Discord handle"
+        className="bg-white/50 border-white/30 text-white placeholder:text-white"
+        value={handle}
+        onChange={(e) => setHandle(e.target.value)}
         disabled={status === 'loading'}
         required
       />
