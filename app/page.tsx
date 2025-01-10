@@ -252,10 +252,11 @@ export default function Home() {
   <div className="absolute inset-0 w-full h-full">
     <iframe
       ref={iframeRef}
-      className="w-full h-full"
-      src="https://www.youtube.com/embed/w7YHz5-dJF8?autoplay=1&mute=1&loop=1&playlist=w7YHz5-dJF8&controls=0&showinfo=0&rel=0&enablejsapi=1"
+      className="w-full h-full object-cover"
+      src="https://www.youtube.com/embed/w7YHz5-dJF8?autoplay=1&mute=1&loop=1&playlist=w7YHz5-dJF8&controls=0&showinfo=0&rel=0&enablejsapi=1&playsinline=1"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
+      style={{ pointerEvents: 'none' }}
     ></iframe>
   </div>
   <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-end text-center p-4 pb-8 sm:pb-16 md:pb-24">
