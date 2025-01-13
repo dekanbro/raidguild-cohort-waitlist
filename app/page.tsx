@@ -210,7 +210,7 @@ function SpeakerForm() {
         className="w-full"
         disabled={status === 'loading'}
       >
-        {status === 'loading' ? 'Registering...' : 'Register as Speaker'}
+        {status === 'loading' ? 'Registering...' : 'Register as Speaker/Mentor'}
       </Button>
       {message && (
         <p className={`text-sm ${status === 'error' ? 'text-red-400' : 'text-green-400'}`}>
