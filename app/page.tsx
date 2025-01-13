@@ -230,17 +230,11 @@ function FormContainer() {
 
 export default function Home() {
   const [isMuted, setIsMuted] = useState(true);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const toggleMute = () => {
-    if (iframeRef.current) {
-      iframeRef.current.contentWindow?.postMessage(
-        JSON.stringify({
-          event: 'command',
-          func: isMuted ? 'unMute' : 'mute'
-        }),
-        '*'
-      );
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
       setIsMuted(!isMuted);
     }
   };
@@ -250,31 +244,52 @@ export default function Home() {
       {/* Video Hero Section */}
 <section className="relative h-screen">
   <div className="absolute inset-0 w-full h-full">
-    <iframe
-      ref={iframeRef}
+    <video
+      ref={videoRef}
       className="w-full h-full object-cover"
-      src="https://www.youtube.com/embed/w7YHz5-dJF8?autoplay=1&mute=1&loop=1&playlist=w7YHz5-dJF8&controls=0&showinfo=0&rel=0&enablejsapi=1&playsinline=1"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
+      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/rg-season8-trailer-v2JtdN5mvV7F5RrgJbFqW9KDSpuWk7.mp4"
+      autoPlay
+      loop
+      muted={isMuted}
+      playsInline
       style={{ pointerEvents: 'none' }}
-    ></iframe>
+    />
   </div>
   <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-end text-center p-4 pb-8 sm:pb-16 md:pb-24">
-  <div className="absolute top-4 right-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleMute}
-              aria-label={isMuted ? "Unmute video" : "Mute video"}
-            >
-              {isMuted ? <VolumeX className="h-6 w-6" /> : <Volume2 className="h-6 w-6" />}
-            </Button>
-          </div>
+    <div className="absolute top-4 right-4">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={toggleMute}
+        aria-label={isMuted ? "Unmute video" : "Mute video"}
+      >
+        {isMuted ? <VolumeX className="h-6 w-6" /> : <Volume2 className="h-6 w-6" />}
+      </Button>
+    </div>
     <div className="flex flex-col items-center mb-4 sm:mb-8">
-
       <p className="text-lg sm:text-xl md:text-2xl px-4 sm:px-0">RaidGuild Cohort VIII</p>
     </div>
     <FormContainer />
+  </div>
+</section>
+
+<section className="py-12 bg-gray-800">
+  <div className="max-w-6xl mx-auto px-4">
+    <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8">Cohort Details</h2>
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-white/90">Start Date</h3>
+        <p className="text-white/70">Last Week of January 2025</p>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-white/90">Time</h3>
+        <p className="text-white/70">11am Mountain Time, Daily</p>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-white/90">Place</h3>
+        <p className="text-white/70">RaidGuild Discord cohort channel</p>
+      </div>
+    </div>
   </div>
 </section>
 
