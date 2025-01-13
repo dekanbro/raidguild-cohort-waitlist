@@ -239,7 +239,7 @@ function FormContainer() {
           onClick={() => setFormType('speaker')}
           className="flex-1"
         >
-          Register as Speaker
+          Register as Speaker/Mentor
         </Button>
       </div>
       {formType === 'waitlist' ? <EmailForm /> : <SpeakerForm />}
