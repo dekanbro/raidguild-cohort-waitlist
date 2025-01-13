@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Brain, Users, Castle, Bot, Workflow } from 'lucide-react'
+import { Brain, Users, Castle, Bot, Workflow, Target } from 'lucide-react'
 import { DiscIcon as Discord, X, VolumeX, Volume2 } from 'lucide-react'
 import Link from 'next/link'
 import { useState, useRef } from 'react';
@@ -274,7 +274,7 @@ export default function Home() {
       style={{ pointerEvents: 'none' }}
     />
   </div>
-  <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-end text-center p-4 pb-8 sm:pb-16 md:pb-24">
+  <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-end text-center p-4 pb-8 sm:pb-16 md:pb-24">
     <div className="absolute top-4 right-4">
       <Button
         variant="ghost"
@@ -286,7 +286,12 @@ export default function Home() {
       </Button>
     </div>
     <div className="flex flex-col items-center mb-4 sm:mb-8">
-      <p className="text-lg sm:text-xl md:text-2xl px-4 sm:px-0">RaidGuild Cohort VIII</p>
+      <p className="text-lg sm:text-xl md:text-2xl px-4 sm:px-0 mb-2 font-bold text-shadow">
+        RaidGuild Cohort VIII
+      </p>
+      <p className="text-sm sm:text-base md:text-lg max-w-2xl text-white px-4 sm:px-0 text-shadow">
+        Join the frontier of AI and onchain development and learn to build autonomous agents that shape the future. Whether you're a developer, founder, or tech enthusiast, this cohort will equip you with the skills to create impactful AI solutions.
+      </p>
     </div>
     <FormContainer />
   </div>
@@ -295,7 +300,7 @@ export default function Home() {
 <section className="py-12 bg-gray-800">
   <div className="max-w-6xl mx-auto px-4">
     <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8">Cohort Details</h2>
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
       <div className="space-y-2">
         <h3 className="text-xl font-semibold text-white/90">Start Date</h3>
         <p className="text-white/70">Last Week of January 2025</p>
@@ -308,6 +313,10 @@ export default function Home() {
         <h3 className="text-xl font-semibold text-white/90">Place</h3>
         <p className="text-white/70">RaidGuild Discord cohort channel</p>
       </div>
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-white/90">Applications Due</h3>
+        <p className="text-white/70">Friday, January 24th</p>
+      </div>
     </div>
   </div>
 </section>
@@ -316,7 +325,7 @@ export default function Home() {
       <section className="py-12 sm:py-16 px-4 bg-gray-900">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">Discover The Cohort</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <FeatureCard
               icon={<Brain className="w-10 h-10 sm:w-12 sm:h-12" />}
               title="Agent Frameworks"
@@ -331,6 +340,11 @@ export default function Home() {
               icon={<Workflow className="w-10 h-10 sm:w-12 sm:h-12" />}
               title="AI Product Workflows"
               description="Master the end-to-end process of building AI products, from ideation to deployment and monitoring."
+            />
+            <FeatureCard
+              icon={<Target className="w-10 h-10 sm:w-12 sm:h-12" />}
+              title="AI Alignment"
+              description="Learn to build AI systems that are safe, ethical, and aligned with human values and interests."
             />
           </div>
         </div>
