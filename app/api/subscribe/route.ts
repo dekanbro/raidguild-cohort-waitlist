@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     }
 
     const base = new Airtable({ apiKey }).base(baseId);
-    const { email, handle, topic, type = 'waitlist' } = await req.json();
+    const { email, handle, warpcastHandle, topic, type = 'waitlist' } = await req.json();
 
     if (!email || !handle) {
       return NextResponse.json(
@@ -50,12 +50,13 @@ export async function POST(req: Request) {
       );
     }
 
-    // Create record with all fields
+    // Create record with all fields including warpcastHandle
     const result = await base('signups').create([
       {
         fields: {
           Email: email,
           Handle: handle,
+          WarpcastHandle: warpcastHandle || '',  // Empty string if not provided
           Topic: topic || '',  // Empty string if not provided
           Type: type,
           SignupDate: new Date().toISOString()
@@ -63,7 +64,7 @@ export async function POST(req: Request) {
       }
     ]);
 
-    console.log('Airtable response:', result);
+    // console.log('Airtable response:', result);
 
     return NextResponse.json(
       { message: type === 'speaker' ? 'Successfully registered as speaker' : 'Successfully subscribed' },
@@ -71,12 +72,12 @@ export async function POST(req: Request) {
     );
   } catch (error) {
     // Enhanced error logging
-    console.error('Subscription error details:', {
-      message: (error as AirtableError).message,
-      statusCode: (error as AirtableError).statusCode,
-      type: (error as AirtableError).error,
-      stack: (error as AirtableError).stack
-    });
+    // console.error('Subscription error details:', {
+    //   message: (error as AirtableError).message,
+    //   statusCode: (error as AirtableError).statusCode,
+    //   type: (error as AirtableError).error,
+    //   stack: (error as AirtableError).stack
+    // });
 
     return NextResponse.json(
       { error: 'Failed to subscribe: ' + (error as AirtableError).message },

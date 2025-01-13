@@ -50,6 +50,7 @@ function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode
 function EmailForm() {
   const [email, setEmail] = useState('');
   const [handle, setHandle] = useState('');
+  const [warpcastHandle, setWarpcastHandle] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
@@ -63,7 +64,7 @@ function EmailForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, handle, type: 'waitlist' }),
+        body: JSON.stringify({ email, handle, warpcastHandle, type: 'waitlist' }),
       });
 
       const data = await response.json();
@@ -76,6 +77,7 @@ function EmailForm() {
       setMessage('Thanks for subscribing!');
       setEmail('');
       setHandle('');
+      setWarpcastHandle('');
     } catch (error) {
       setStatus('error');
       setMessage(error instanceof Error ? error.message : 'Something went wrong');
@@ -101,7 +103,15 @@ function EmailForm() {
         onChange={(e) => setHandle(e.target.value)}
         disabled={status === 'loading'}
         required
-      />  
+      />
+      <Input
+        type="text"
+        placeholder="Warpcast handle (optional)"
+        className="bg-white/50 border-white/30 text-white placeholder:text-white"
+        value={warpcastHandle}
+        onChange={(e) => setWarpcastHandle(e.target.value)}
+        disabled={status === 'loading'}
+      />
       <Button 
         type="submit" 
         variant="secondary" 
@@ -123,7 +133,7 @@ function SpeakerForm() {
   const [email, setEmail] = useState('');
   const [handle, setHandle] = useState('');
   const [topic, setTopic] = useState('');
-
+  const [warpcastHandle, setWarpcastHandle] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
@@ -137,7 +147,7 @@ function SpeakerForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email,handle, topic, type: 'speaker' }),
+        body: JSON.stringify({ email, handle, topic, warpcastHandle, type: 'speaker' }),
       });
 
       const data = await response.json();
@@ -151,6 +161,7 @@ function SpeakerForm() {
       setEmail('');
       setHandle('');
       setTopic('');
+      setWarpcastHandle('');
     } catch (error) {
       setStatus('error');
       setMessage(error instanceof Error ? error.message : 'Something went wrong');
@@ -176,6 +187,14 @@ function SpeakerForm() {
         onChange={(e) => setHandle(e.target.value)}
         disabled={status === 'loading'}
         required
+      />
+      <Input
+        type="text"
+        placeholder="Warpcast handle (optional)"
+        className="bg-white/50 border-white/30 text-white placeholder:text-white"
+        value={warpcastHandle}
+        onChange={(e) => setWarpcastHandle(e.target.value)}
+        disabled={status === 'loading'}
       />
       <Textarea
         placeholder="What would you like to speak about? If you just want to mentor, please say so."
